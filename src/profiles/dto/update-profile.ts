@@ -1,3 +1,3 @@
-export class UpdatePortfolioDto{
+export class UpdateProfileDto{
     name:string;
     description:string;}

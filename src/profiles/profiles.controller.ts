@@ -1,6 +1,6 @@
 import { Controller,Get,Query,Param,Post,Body,Put,HttpStatus,HttpCode,Delete} from '@nestjs/common';
 import {CreateProfileDto}   from './dto/create-profile-dto';
-import { UpdatePortfolioDto } from './dto/update-portfolio';
+import { UpdateProfileDto } from './dto/update-profile';
 import { ProfilesService } from './profiles.service';
 import { create } from 'domain';
 @Controller('profiles')
@@ -18,20 +18,14 @@ export class ProfilesController {
   //post create a profile
   @Post()
   create(@Body() CreateProfileDto: CreateProfileDto) {
-    return {
-      name: CreateProfileDto.name,
-      description: CreateProfileDto.description,
-    };
+    return this.profilesService.create(CreateProfileDto);
   }
   @Put(':id')
   update(
     @Param('id') id: string,
-    @Body() updateProfileDto: UpdatePortfolioDto,
+    @Body() updateProfileDto: UpdateProfileDto,
   ) {
-    return {
-      id,
-      ...updateProfileDto,
-    };
+    return this.profilesService.update(id, updateProfileDto);
   }
 
   @Delete(':id')
