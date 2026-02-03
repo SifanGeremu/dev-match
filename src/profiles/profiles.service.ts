@@ -57,5 +57,10 @@ return newProfile;
       matchingProfile.description = updateProfileDto.description;
       return matchingProfile;
     }
+    delete(id: string) {
+      const index = this.profiles.findIndex((profile) => profile.id === id);  
+      if (index === -1) {
+        return;
+      }}
 
 }
